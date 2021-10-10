@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-extern Account account[];
-extern int accNum;
+extern Account* account[];
 
 void MakeAccount() {
 	int accID;
@@ -18,8 +17,6 @@ void MakeAccount() {
 	cout << "ют╠щ╬в: ";
 	cin >> balance;
 
-	account[accNum].accountID = accID;
-	account[accNum].balance = balance;
-	strcpy_s(account[accNum].name, name);
-	accNum++;
+	account[Account::GetAccNum()] = new Account(accID, name, balance);
+	Account::IncreaseAccNum();
 }

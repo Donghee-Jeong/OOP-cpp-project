@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-extern Account account[];
-extern int accNum;
+extern Account* account[];
 
 int InputDepositID() {
 	int accID;
@@ -28,11 +27,12 @@ void Deposit() {
 	int accID = InputDepositID();
 	int money = InputDepositMoney();
 
-	for (int i = 0; i < accNum; i++) {
-		if (account[i].accountID == accID) {
-			account[i].balance += money;
+	for (int i = 0; i < Account::GetAccNum(); i++) {
+		if (account[i]->GetAccID() == accID) {
+			account[i]->Deposit(money);
 			cout << "입금완료" << endl;
 			return;
 		}
 	}
+	cout << "없는 계좌입니다." << endl;
 }

@@ -2,13 +2,12 @@
 #include <iostream>
 using namespace std;
 
-extern Account account[];
-extern int accNum;
+extern Account* account[];
 
 void ShowAllAccInfo() {
-	for (int i = 0; i < accNum; i++) {
-		cout << "°èÁÂID: " << account[i].accountID << endl;
-		cout << "ÀÌ ¸§: " << account[i].name << endl;
-		cout << "ÀÜ ¾×: " << account[i].balance << endl;
+	for (int i = 0; i < Account::GetAccNum(); i++) {
+		cout << "°èÁÂID: " << account[i]->GetAccID() << endl;
+		cout << "ÀÌ ¸§: " << account[i]->GetName() << endl;
+		cout << "ÀÜ ¾×: " << account[i]->GetBalance() << endl;
 	}
 }
