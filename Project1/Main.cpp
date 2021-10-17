@@ -1,10 +1,8 @@
-#include "Manager.h"
-#include "Account.h"
-
-Account* account[100];
+#include "AccountHandler.h"
 
 int main() {
-	Manager();
+	AccountHandler ah;
+	ah.Manager();
 
 	return 0;
 }
