@@ -16,7 +16,7 @@ public:
 	int GetBalance() const { return balance; }
 	const char* GetName() const { return name; }
 	
-	void Deposit(const int money);
+	virtual void Deposit(const int money);
 	void Withdraw(const int money);
 
 	//static int GetAccNum() { return accNum; }

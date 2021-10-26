@@ -56,16 +56,44 @@ void AccountHandler::MakeAccount() {
 	int accID;
 	char name[NAME_LENGTH];
 	int balance;
+	int interest;
+	int level;
+	int accountType;
 
-	cout << "[계좌개설]" << endl;
-	cout << "계좌ID: ";
-	cin >> accID;
-	cout << "이 름: ";
-	cin >> name;
-	cout << "입금액: ";
-	cin >> balance;
+	cout << "[계좌종류선택]" << endl;
+	cout << "1. 보통예금계좌 2. 신용신뢰계좌" << endl;
+	cout << "선택: ";
+	cin >> accountType;
 
-	account[index++] = new Account(accID, name, balance);
+	switch (accountType) {
+	case 1:
+		cout << "[보통예금계좌 개설]" << endl;
+		cout << "계좌ID: ";
+		cin >> accID;
+		cout << "이 름: ";
+		cin >> name;
+		cout << "입금액: ";
+		cin >> balance;
+		cout << "이자율: ";
+		cin >> interest;
+		account[index++] = new NormalAccount(accID, name, balance, interest);
+		break;
+	case 2:
+		cout << "[신용신뢰계좌 개설]" << endl;
+		cout << "계좌ID: ";
+		cin >> accID;
+		cout << "이 름: ";
+		cin >> name;
+		cout << "입금액: ";
+		cin >> balance;
+		cout << "이자율: ";
+		cin >> interest;
+		cout << "신용등급(1toA, 2toB, 3toC): ";
+		cin >> level;
+		account[index++] = new HighCreditAccount(accID, name, balance, interest, level);
+		break;
+	}
+		//new Account(accID, name, balance);
 }
 
 void AccountHandler::Deposit() {
