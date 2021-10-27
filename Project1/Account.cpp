@@ -12,6 +12,16 @@ Account::Account(const Account& account) : accountID(account.accountID), balance
 	strcpy(this->name, account.name);
 }
 
+Account& Account::operator=(const Account& account) {
+	delete[] name;
+	name = new char[strlen(account.name) + 1];
+	strcpy(name, account.name);
+	accountID = account.accountID;
+	balance = account.balance;
+
+	return *this;
+}
+
 void Account::Deposit(const int money) {
 	balance += money;
 }

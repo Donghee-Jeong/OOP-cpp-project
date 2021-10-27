@@ -140,16 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
-    <ClCompile Include="AccountHandler.cpp" />
-    <ClCompile Include="HighCreditAccount.cpp" />
+    <ClCompile Include="AccManager.cpp" />
+    <ClCompile Include="CreditAccount.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="NormalAccount.cpp" />
+    <ClCompile Include="DonationAccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
-    <ClInclude Include="AccountHandler.h" />
-    <ClInclude Include="HighCreditAccount.h" />
-    <ClInclude Include="NormalAccount.h" />
+    <ClInclude Include="AccManager.h" />
+    <ClInclude Include="CreditAccount.h" />
+    <ClInclude Include="DonationAccount.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

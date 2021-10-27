@@ -1,7 +1,7 @@
-#include "AccountHandler.h"
+#include "AccManager.h"
 
 int main() {
-	AccountHandler ah;
+	AccManager ah;
 	ah.Manager();
 
 	return 0;

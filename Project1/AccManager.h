@@ -1,21 +1,21 @@
-#include "Account.h"
-#include "NormalAccount.h"
-#include "HighCreditAccount.h"
+#ifndef __ACCMANAGER_H__
+#define __ACCMANAGER_H__
 
-#ifndef __ACCOUNTHANDLER_H__
-#define __ACCOUNTHANDLER_H__
+#include "Account.h"
+#include "CreditAccount.h"
+#include "DonationAccount.h"
 
 enum { MAKE = 1, DEPOSIT, WITHDRAW, INQUIRE, EXIT };
 const int NAME_LENGTH = 20;
 
-class AccountHandler {
+class AccManager {
 private:
 	Account* account[100];
 	int index;
 public:
-	AccountHandler();
-	AccountHandler(const AccountHandler& ah);
-	~AccountHandler();
+	AccManager();
+	AccManager(const AccManager& ah);
+	~AccManager();
 
 	void Manager();
 	void ShowMenu() const;

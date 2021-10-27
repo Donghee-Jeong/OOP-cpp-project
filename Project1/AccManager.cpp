@@ -1,22 +1,22 @@
-#include "AccountHandler.h"
+#include "AccManager.h"
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
 
-AccountHandler::AccountHandler() : index(0) {}
-AccountHandler::AccountHandler(const AccountHandler& ah) : index(ah.index) {
+AccManager::AccManager() : index(0) {}
+AccManager::AccManager(const AccManager& ah) : index(ah.index) {
 	for (int i = 0; i < index; i++) {
 		account[i] = new Account(*ah.account[i]);
 	}
 }
-AccountHandler::~AccountHandler() {
+AccManager::~AccManager() {
 	for (int i = 0; i < index; i++) {
 		delete account[i];
 	}
 }
 
-void AccountHandler::Manager() {
+void AccManager::Manager() {
 	int choice = 0;
 	while (choice != EXIT) {
 		ShowMenu();
@@ -43,7 +43,7 @@ void AccountHandler::Manager() {
 	cout << "종료되었습니다.";
 }
 
-void AccountHandler::ShowMenu() const{
+void AccManager::ShowMenu() const{
 	cout << "-----Menu-----" << endl;
 	cout << "1. 계좌개설" << endl;
 	cout << "2. 입 금" << endl;
@@ -52,51 +52,43 @@ void AccountHandler::ShowMenu() const{
 	cout << "5. 프로그램 종료" << endl;
 }
 
-void AccountHandler::MakeAccount() {
+void AccManager::MakeAccount() {
 	int accID;
 	char name[NAME_LENGTH];
 	int balance;
-	int interest;
-	int level;
 	int accountType;
 
 	cout << "[계좌종류선택]" << endl;
-	cout << "1. 보통예금계좌 2. 신용신뢰계좌" << endl;
+	cout << "1. 신용 계좌 2. 기부 계좌" << endl;
 	cout << "선택: ";
 	cin >> accountType;
 
 	switch (accountType) {
 	case 1:
-		cout << "[보통예금계좌 개설]" << endl;
+		cout << "[신용 계좌 개설]" << endl;
 		cout << "계좌ID: ";
 		cin >> accID;
 		cout << "이 름: ";
 		cin >> name;
 		cout << "입금액: ";
 		cin >> balance;
-		cout << "이자율: ";
-		cin >> interest;
-		account[index++] = new NormalAccount(accID, name, balance, interest);
+		account[index++] = new CreditAccount(accID, name, balance);
 		break;
 	case 2:
-		cout << "[신용신뢰계좌 개설]" << endl;
+		cout << "[기부 계좌 개설]" << endl;
 		cout << "계좌ID: ";
 		cin >> accID;
 		cout << "이 름: ";
 		cin >> name;
 		cout << "입금액: ";
 		cin >> balance;
-		cout << "이자율: ";
-		cin >> interest;
-		cout << "신용등급(1toA, 2toB, 3toC): ";
-		cin >> level;
-		account[index++] = new HighCreditAccount(accID, name, balance, interest, level);
+		account[index++] = new DonationAccount(accID, name, balance);
 		break;
 	}
 		//new Account(accID, name, balance);
 }
 
-void AccountHandler::Deposit() {
+void AccManager::Deposit() {
 	int accID;
 	int money;
 
@@ -116,7 +108,7 @@ void AccountHandler::Deposit() {
 	cout << "없는 계좌입니다." << endl;
 }
 
-void AccountHandler::Withdraw() {
+void AccManager::Withdraw() {
 	int accID;
 	int money;
 
@@ -140,7 +132,7 @@ void AccountHandler::Withdraw() {
 	cout << "없는 계좌입니다." << endl;
 }
 
-void AccountHandler::ShowAllAccInfo() const{
+void AccManager::ShowAllAccInfo() const{
 	for (int i = 0; i < index; i++) {
 		cout << "계좌ID: " << account[i]->GetAccID() << endl;
 		cout << "이 름: " << account[i]->GetName() << endl;

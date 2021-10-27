@@ -23,26 +23,27 @@
 
 ### 프로젝트 06단계의 도입
 
-- NormalAccount 보통예금계좌 :
-  최소한의 이자를 지급하는 자율 입출금식 계좌
-- HighCreditAccount 신용신뢰계좌 : 신용도가 높은 고객에게만 개설을 허용하는 높은 이율의 계좌
+- CreditAccount 신용 계좌 :
+  입금 시 바로 1%의 이자가 추가로 더해진다.
+- DonationAccount 기부 계좌 : 입금 금액의 1%에 해당하는 금액이 사회 기부금으로 기여된다.
 
 ### 설명
 
-#### NormalAccount 클래스
+#### CreditAccount 클래스
 
-- 객체의 생성과정에서 이율정보를 등록할 수 있다.
+- 이자(interest)가 1%로 설정되어 입금 시마다 입금한 금액에 계산되어 잔액에 반영된다.
 
-#### HighCreditAccount 클래스
+#### DonationAccount 클래스
 
-- HighCreditAccount 클래스에서도 객체 생성과정에서 기본이율을 등록할 수 있다.
-- 고객의 신용등급을 A, B, C로 나누고 계좌개설 시 이 정보를 등록한다.
-- A, B, C 등급별로 각각 기본이율에 7%, 4%, 2%의 이율을 추가로 제공한다.
+- 기부율(donateRate)가 1%로 설정되어 입금 시마다 임금한 금액에 계산되어 기부총액(donateSum)에 반영된다.
+- 현재 남아 있는 잔액 정보를 조회할 때, 기부된 총액도 출력되어야 한다.
 
 ### 클래스 구성
 
 #### class Account { ... };
 
-#### class NormalAccount : public Account { ... };
+#### class CreditAccount : public Account { ... };
 
-#### class HighCreditAccount : public NormalAccount { ... };
+#### class DonationAccount : public Account { ... };
+
+- 기부된 총액의 경우 Account 클래스의 GetBalance 함수를 오버라이딩하여 잔액을 리턴하기 전에 기부된 총액을 출력하는 형태로 만들었다. -> 이렇게 함으로써 AccManager 클래스에서 ShowAllInfo 함수를 수정하지 않고도 기부된 총액을 출력할 수 있었다.

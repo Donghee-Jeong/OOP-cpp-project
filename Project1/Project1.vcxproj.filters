@@ -21,13 +21,13 @@
     <ClCompile Include="Account.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="AccountHandler.cpp">
+    <ClCompile Include="AccManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="NormalAccount.cpp">
+    <ClCompile Include="DonationAccount.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HighCreditAccount.cpp">
+    <ClCompile Include="CreditAccount.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,13 +35,13 @@
     <ClInclude Include="Account.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="AccountHandler.h">
+    <ClInclude Include="AccManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="NormalAccount.h">
+    <ClInclude Include="DonationAccount.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HighCreditAccount.h">
+    <ClInclude Include="CreditAccount.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

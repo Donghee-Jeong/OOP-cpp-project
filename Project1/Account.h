@@ -3,17 +3,18 @@
 
 class Account {
 private:
-	const int accountID;
+	int accountID;
 	char* name;
 	int balance;
 	//static int accNum;
 public:
 	Account(const int _accountID, const char* name, const int _balance);
 	Account(const Account& account);
+	Account& operator=(const Account& account);
 	~Account() { delete[] name; }
 
 	int GetAccID() const { return accountID; }
-	int GetBalance() const { return balance; }
+	virtual int GetBalance() const { return balance; }
 	const char* GetName() const { return name; }
 	
 	virtual void Deposit(const int money);
