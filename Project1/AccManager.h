@@ -16,7 +16,7 @@ private:
 	Container container;
 	//int index;
 public:
-	AccManager();
+	AccManager(int len);
 	AccManager(const AccManager& am);
 	AccManager& operator=(const AccManager& am);
 	~AccManager();

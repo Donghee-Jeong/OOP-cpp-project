@@ -1,5 +1,4 @@
 #include "Container.h"
-
 Container::Container(int len) : length(len), aIndex(0) {
 	arr = new Element[length];
 }
@@ -16,10 +15,7 @@ Container& Container::operator=(const Container& container) {
 	return *this;
 }
 Container::~Container() {
-	//delete[] arr;
-	for (int i = 0; i < length; i++) {
-		delete arr[i];
-	}
+	delete[] arr;
 }
 void Container::Insert(Element data) {
 	arr[aIndex++] = data;

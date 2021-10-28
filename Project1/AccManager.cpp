@@ -4,7 +4,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-AccManager::AccManager()/*: index(0)*/ {}
+AccManager::AccManager(int len): container(len)/*: index(0)*/ {}
 AccManager::AccManager(const AccManager& am)/* : index(ah.index)*/ {
 	/*for (int i = 0; i < index; i++) {
 		account[i] = new Account(*ah.account[i]);

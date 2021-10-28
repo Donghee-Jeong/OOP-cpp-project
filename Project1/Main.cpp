@@ -1,8 +1,8 @@
 #include "AccManager.h"
 
 int main() {
-	AccManager ah;
-	ah.Manager();
+	AccManager am(100);
+	am.Manager();
 
 	return 0;
 }
