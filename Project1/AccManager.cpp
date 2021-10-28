@@ -4,16 +4,28 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-AccManager::AccManager() : index(0) {}
-AccManager::AccManager(const AccManager& ah) : index(ah.index) {
-	for (int i = 0; i < index; i++) {
+AccManager::AccManager()/*: index(0)*/ {}
+AccManager::AccManager(const AccManager& am)/* : index(ah.index)*/ {
+	/*for (int i = 0; i < index; i++) {
 		account[i] = new Account(*ah.account[i]);
-	}
+	}*/
+	container = am.container;
 }
-AccManager::~AccManager() {
+AccManager& AccManager::operator=(const AccManager& am){
+	/*index = am.index;
 	for (int i = 0; i < index; i++) {
 		delete account[i];
 	}
+	for (int i = 0; i < index; i++) {
+		account[i] = new Account(*am.account[i]);
+	}*/
+	container = am.container;
+	return *this;
+}
+AccManager::~AccManager() {
+	/*for (int i = 0; i < index; i++) {
+		delete account[i];
+	}*/
 }
 
 void AccManager::Manager() {
@@ -54,7 +66,7 @@ void AccManager::ShowMenu() const{
 
 void AccManager::MakeAccount() {
 	int accID;
-	char name[NAME_LENGTH];
+	String name;
 	int balance;
 	int accountType;
 
@@ -72,7 +84,8 @@ void AccManager::MakeAccount() {
 		cin >> name;
 		cout << "입금액: ";
 		cin >> balance;
-		account[index++] = new CreditAccount(accID, name, balance);
+		//account[index++] = new CreditAccount(accID, name, balance);
+		container.Insert(new CreditAccount(accID, name, balance));
 		break;
 	case 2:
 		cout << "[기부 계좌 개설]" << endl;
@@ -82,7 +95,8 @@ void AccManager::MakeAccount() {
 		cin >> name;
 		cout << "입금액: ";
 		cin >> balance;
-		account[index++] = new DonationAccount(accID, name, balance);
+		//account[index++] = new DonationAccount(accID, name, balance);
+		container.Insert(new DonationAccount(accID, name, balance));
 		break;
 	}
 		//new Account(accID, name, balance);
@@ -96,11 +110,12 @@ void AccManager::Deposit() {
 	cout << "계좌ID: ";
 	cin >> accID;
 
-	for (int i = 0; i < index; i++) {
-		if (account[i]->GetAccID() == accID) {
+	for (int i = 0; i < /*index*/container.GetElemSum(); i++) {
+		if (/*account[i]->GetAccID()*/container.GetItem(i)->GetAccID() == accID) {
 			cout << "입금액: ";
 			cin >> money;
-			account[i]->Deposit(money);
+			//account[i]->Deposit(money);
+			container.GetItem(i)->Deposit(money);
 			cout << "입금완료" << endl;
 			return;
 		}
@@ -116,12 +131,13 @@ void AccManager::Withdraw() {
 	cout << "계좌ID: ";
 	cin >> accID;
 
-	for (int i = 0; i < index; i++) {
-		if (account[i]->GetAccID() == accID) {
+	for (int i = 0; i < /*index*/container.GetElemSum(); i++) {
+		if (/*account[i]->GetAccID()*/container.GetItem(i)->GetAccID() == accID) {
 			cout << "출금액: ";
 			cin >> money;
-			if (account[i]->GetBalance() >= money) {
-				account[i]->Withdraw(money);
+			if (/*account[i]->GetBalance()*/container.GetItem(i)->GetBalance() >= money) {
+				//account[i]->Withdraw(money);
+				container.GetItem(i)->Withdraw(money);
 				cout << "출금완료" << endl;
 				return;
 			}
@@ -133,9 +149,9 @@ void AccManager::Withdraw() {
 }
 
 void AccManager::ShowAllAccInfo() const{
-	for (int i = 0; i < index; i++) {
-		cout << "계좌ID: " << account[i]->GetAccID() << endl;
-		cout << "이 름: " << account[i]->GetName() << endl;
-		cout << "잔 액: " << account[i]->GetBalance() << endl;
+	for (int i = 0; i < /*index*/container.GetElemSum(); i++) {
+		cout << "계좌ID: " << /*account[i]*/container.GetItem(i)->GetAccID() << endl;
+		cout << "이 름: " << /*account[i]*/container.GetItem(i)->GetName() << endl;
+		cout << "잔 액: " << /*account[i]*/container.GetItem(i)->GetBalance() << endl;
 	}
 }

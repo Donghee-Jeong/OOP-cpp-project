@@ -4,17 +4,21 @@
 #include "Account.h"
 #include "CreditAccount.h"
 #include "DonationAccount.h"
+#include "Container.h"
+#include "String.h"
 
 enum { MAKE = 1, DEPOSIT, WITHDRAW, INQUIRE, EXIT };
 const int NAME_LENGTH = 20;
 
 class AccManager {
 private:
-	Account* account[100];
-	int index;
+	//Account* account[100];
+	Container container;
+	//int index;
 public:
 	AccManager();
-	AccManager(const AccManager& ah);
+	AccManager(const AccManager& am);
+	AccManager& operator=(const AccManager& am);
 	~AccManager();
 
 	void Manager();
