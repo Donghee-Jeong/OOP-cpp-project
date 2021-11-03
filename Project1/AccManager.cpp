@@ -70,7 +70,7 @@ void AccManager::MakeAccount() {
 	int balance;
 	int accountType;
 
-	cout << "[계좌종류선택]" << endl;
+	cout << endl << "[계좌종류선택]" << endl;
 	cout << "1. 신용 계좌 2. 기부 계좌" << endl;
 	cout << "선택: ";
 	cin >> accountType;
@@ -99,6 +99,7 @@ void AccManager::MakeAccount() {
 		container.Insert(new DonationAccount(accID, name, balance));
 		break;
 	}
+	cout << "계좌생성 완료" << endl << endl;
 		//new Account(accID, name, balance);
 }
 
@@ -106,52 +107,62 @@ void AccManager::Deposit() {
 	int accID;
 	int money;
 
-	cout << "[입 금]" << endl;
+	cout << endl << "[입 금]" << endl;
 	cout << "계좌ID: ";
 	cin >> accID;
 
 	for (int i = 0; i < /*index*/container.GetElemSum(); i++) {
 		if (/*account[i]->GetAccID()*/container.GetItem(i)->GetAccID() == accID) {
-			cout << "입금액: ";
-			cin >> money;
-			//account[i]->Deposit(money);
-			container.GetItem(i)->Deposit(money);
-			cout << "입금완료" << endl;
+			try {
+				cout << "입금액: ";
+				cin >> money;
+				container.GetItem(i)->Deposit(money);
+				cout << "입금완료" << endl << endl;
+			}
+			catch (int errorDeposit) {
+				cout << errorDeposit << "원은 입금할 수 없습니다." << endl << endl;
+			}
 			return;
 		}
 	}
-	cout << "없는 계좌입니다." << endl;
+	cout << "없는 계좌입니다." << endl << endl;
 }
 
 void AccManager::Withdraw() {
 	int accID;
 	int money;
 
-	cout << "[출 금]" << endl;
+	cout << endl << "[출 금]" << endl;
 	cout << "계좌ID: ";
 	cin >> accID;
 
 	for (int i = 0; i < /*index*/container.GetElemSum(); i++) {
 		if (/*account[i]->GetAccID()*/container.GetItem(i)->GetAccID() == accID) {
-			cout << "출금액: ";
-			cin >> money;
-			if (/*account[i]->GetBalance()*/container.GetItem(i)->GetBalance() >= money) {
-				//account[i]->Withdraw(money);
+			try {
+				cout << "출금액: ";
+				cin >> money;
 				container.GetItem(i)->Withdraw(money);
-				cout << "출금완료" << endl;
-				return;
+				cout << "출금완료" << endl << endl;
 			}
-			cout << "잔액이 부족합니다." << endl;
+			catch (int errorWithdraw) {
+				if (container.GetItem(i)->GetBalance() < errorWithdraw)
+					cout << "잔액이 부족합니다." << endl << endl;
+				else
+					cout << errorWithdraw<<"원은 출금할 수 없습니다." << endl << endl;
+			}
 			return;
 		}
 	}
-	cout << "없는 계좌입니다." << endl;
+	cout << "없는 계좌입니다." << endl << endl;
 }
 
 void AccManager::ShowAllAccInfo() const{
+	cout << endl << "[계좌정보 전체 출력]" << endl;
+	cout << "====================" << endl;
 	for (int i = 0; i < /*index*/container.GetElemSum(); i++) {
 		cout << "계좌ID: " << /*account[i]*/container.GetItem(i)->GetAccID() << endl;
 		cout << "이 름: " << /*account[i]*/container.GetItem(i)->GetName() << endl;
 		cout << "잔 액: " << /*account[i]*/container.GetItem(i)->GetBalance() << endl;
+		cout << "====================" << endl << endl;
 	}
 }

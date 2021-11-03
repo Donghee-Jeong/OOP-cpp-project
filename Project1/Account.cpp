@@ -1,5 +1,6 @@
 #include "Account.h"
 #include <iostream>
+using namespace std;
 //int Account::accNum = 0;
 
 Account::Account(const int _accountID, const char* _name, const int _balance)
@@ -19,10 +20,12 @@ Account& Account::operator=(const Account& account) {
 }
 
 void Account::Deposit(const int money) {
+	if (money <= 0) throw money;
 	balance += money;
 }
 
 void Account::Withdraw(const int money) {
+	if (money <= 0 || money > balance) throw money;
 	balance -= money;
 }
 

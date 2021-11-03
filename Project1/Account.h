@@ -21,8 +21,8 @@ public:
 	virtual int GetBalance() const { return balance; }
 	const String GetName() const { return name; }
 	
-	virtual void Deposit(const int money);
-	void Withdraw(const int money);
+	virtual void Deposit(const int money) throw(int);
+	void Withdraw(const int money) throw(int);
 
 	//static int GetAccNum() { return accNum; }
 	//static void IncreaseAccNum(); // 생성자에 넣어도 될듯. 복사생성자는 어떻게 할지가 문제
