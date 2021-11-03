@@ -13,7 +13,7 @@ const int NAME_LENGTH = 20;
 class AccManager {
 private:
 	//Account* account[100];
-	Container container;
+	Container<Account*> container;
 	//int index;
 public:
 	AccManager(int len);
